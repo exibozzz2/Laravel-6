@@ -1,11 +1,21 @@
-# Laravel-6
-# Create All Students Info -> Display Blade 
-# Create Add Student Info  -> Insert Data in SQL
-------------------------------------------------
-# Create Foreign key for user_id from users table
-# Create user_id migration
-# Create user_id field
-# Connect user_id with id from users table
-# Make user_id nullable
-# Change GradesModel fillable 
+# Laravel-7
+# Insert 10 different students-info in SQL
+# Insert 10 different contacts in SQL
+# Insert 10 different products in SQL
+-----------------------------------------
+# Display All Students Info Blade 
+# Display All Contacts in Table Blade
+# Display All Products in Table Blade
+-----------------------------------------
+# Create delete() edit() function in Products/Contacts Table
+# Null Check If product/contact doesn't exist
+-----------------------------------------
+# Create Add Student Info Blade/Form
+# Create Add Product Blade/Form
+# Create Add Contact Blade/Form
+
+# SEPARATE VIEW/DELETE/POST ROUTES 
+# Fix View Routes (što si mi rekao prošli put)
+
+
 

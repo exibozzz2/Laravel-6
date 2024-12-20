@@ -9,7 +9,7 @@
     <div class="container d-flex align-items-center justify-content-center flex-column ">
         @foreach($allStudentsInfo as $studentInfo)
             <div class="col-8 bg-custom text-dark mt-2 h-auto p-1 m-1 border border-2 border-dark ">
-                <h1>Subject: {{ $studentInfo->subject }}</h1>
+                <h1 class="bg-light">Subject: {{ $studentInfo->subject }}</h1>
                 <hr>
                 <p><b>Grade:</b> {{ $studentInfo->grade }}</p>
                 <p><b>Professor:</b> {{ $studentInfo->professor }}</p>

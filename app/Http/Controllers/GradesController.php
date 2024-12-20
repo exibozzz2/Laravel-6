@@ -33,7 +33,4 @@ class GradesController extends Controller
         return redirect('/add-student-info');
     }
 
-    public function addStudentView() {
-        return view('addStudentInfo');
-    }
 }
