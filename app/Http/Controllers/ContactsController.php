@@ -20,7 +20,8 @@ class ContactsController extends Controller
             'subject' => 'string|required|min:4|max:256',
             'message' => 'string|required|min:10|max:2000',
             'email' => 'string|required|max:256',
-            'phone' => 'integer|required',
+            'phone' => 'regex:/^0?[1-9][0-9]*$/|required',
+
         ]);
 
         ContactsModel::create([
@@ -34,16 +35,30 @@ class ContactsController extends Controller
         return redirect('/add-contact');
     }
 
-    public function delete($contact) {
-        $singleContact = ContactsModel::where(['id' => $contact])->first();
+    public function delete(ContactsModel $contact) {
 
-        if($singleContact === null) {
-            die("Contact doesn't exist");
-        }
-
-        $singleContact->delete();
+        $contact->delete();
         return redirect()->back();
 
+    }
+
+    public function viewSingleContact(ContactsModel $contact) {
+
+        return view('editContact', compact('contact'));
+
+    }
+
+    public function update(Request $request, ContactsModel $contact) {
+
+
+        $contact->name = $request->get('name');
+        $contact->subject = $request->get('subject');
+        $contact->message = $request->get('message');
+        $contact->email = $request->get('email');
+        $contact->phone = $request->get('phone');
+        $contact->save();
+
+        return redirect('/all-contacts');
 
     }
 }

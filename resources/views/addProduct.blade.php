@@ -16,22 +16,22 @@
             <h1>Insert Product </h1>
             <div class="form-group mb-1 col-5 ">
                 <label for="name">Name</label>
-                <input type="text" name="name" class="form-control col-lg-10" id="name" aria-describedby="Enter product name " placeholder="Enter product name" required>
+                <input type="text" name="name" class="form-control col-lg-10" id="name" aria-describedby="Enter product name " placeholder="Enter product name" value="{{old("name")}}" required>
             </div>
 
             <div class="form-group mb-1 col-5">
                 <label for="description">Description</label>
-                <input type="text" name="description" class="form-control" id="description" aria-describedby="Enter product description" placeholder="Enter product description" required>
+                <input type="text" name="description" class="form-control" id="description" aria-describedby="Enter product description" placeholder="Enter product description" value="{{old("description")}}" required>
             </div>
 
             <div class="form-group mb-1 col-5">
                 <label for="price">Price</label>
-                <input type="number" name="price" class="form-control" id="price" aria-describedby="Enter product price " placeholder="Enter product price" required>
+                <input type="number" name="price" class="form-control" id="price" aria-describedby="Enter product price " placeholder="Enter product price" value="{{old("price")}}" required>
             </div>
 
             <div class="form-group mb-1 col-5">
                 <label for="amount">Amount</label>
-                <input type="number" name="amount" class="form-control" id="amount" aria-describedby="Enter product amount " placeholder="Enter product amount" required>
+                <input type="number" name="amount" class="form-control" id="amount" aria-describedby="Enter product amount " placeholder="Enter product amount" value="{{old("amount")}}" required>
             </div>
 
             <button type="submit" class="btn btn-primary m-3">Add Product</button>

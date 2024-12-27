@@ -29,7 +29,7 @@ All Contacts
                 <td>{{ $contact->phone }}</td>
                 <td>
                     <a href="/admin/delete-contact/{{ $contact->id }}" class="btn btn-danger">Delete</a>
-                    <a class="btn btn-info">Edit</a>
+                    <a href="{{ route('editContact', ['contact' => $contact->id]) }}" class="btn btn-info">Edit</a>
                 </td>
             </tr>
 

@@ -25,8 +25,8 @@
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->amount }}</td>
                     <td>
-                        <a href="/admin/delete-product/{{ $product->id }}" class="btn btn-danger">Delete</a>
-                        <a class="btn btn-info">Edit</a>
+                        <a href="/admin/delete-product/{{ $product->id }}"  class="btn btn-danger">Delete</a>
+                        <a href="{{ route('editProduct', ['product' => $product->id]) }}" class="btn btn-info">Edit</a>
                     </td>
                 </tr>
 

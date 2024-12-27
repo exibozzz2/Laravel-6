@@ -19,8 +19,8 @@ class ProductsController extends Controller
         $request->validate([
             'name' => 'string|required|min:4',
             'description' => 'string|required|min:10|max:256',
-            'price' => 'integer|required',
-            'amount' => 'integer|required',
+            'price' => 'int|required',
+            'amount' => 'int|required',
         ]);
 
         ProductsModel::create([
@@ -34,17 +34,30 @@ class ProductsController extends Controller
     }
 
 
-    public function delete($product) {
+    public function delete(ProductsModel $product) {
 
-        $singleProduct = ProductsModel::where(['id' => $product])->first();
-
-        if($singleProduct === null) {
-            die ("Product doesn't exist");
-        }
-
-        $singleProduct->delete();
-
+        $product->delete();
         return redirect()->back();
 
     }
+
+    public function viewSingleProduct(ProductsModel $product) {
+
+        return view ('editProduct', compact('product'));
+
+    }
+
+    public function update(Request $request, ProductsModel $product) {
+
+        $product->name = $request->get('name');
+        $product->description = $request->get('description');
+        $product->price = $request->get('price');
+        $product->amount = $request->get('amount');
+        $product->save();
+
+        return redirect('/all-products');
+
+    }
+
+
 }

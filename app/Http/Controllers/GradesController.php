@@ -19,8 +19,8 @@ class GradesController extends Controller
     public function addStudentInfo(Request $request) {
 
         $request->validate([
-            'subject' => 'string|required',
-            'grade' => 'integer|required|min:1|max:5',
+            'subject' => 'string|required|min:2',
+            'grade' => 'int|required|min:1|max:5',
             'professor' => 'string|required'
         ]);
 
