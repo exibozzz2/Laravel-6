@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\CurrencyValuesModel;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use function Pest\Laravel\get;
@@ -39,6 +40,14 @@ class CurrencyCommand extends Command
         $this->getOutput()->progressStart(count($currencies));
 
         foreach ($currencies as $currency) {
+
+            $currentDate = CurrencyValuesModel::where(['value' => $currency])
+                ->whereDate('created_at', Carbon::now())
+                ->first();
+
+            if($currentDate != null) {
+                continue;
+            }
 
             $response = Http::get("https://kurs.resenje.org/api/v1/currencies/$currency/rates/today");
             $jsonResponse = $response->json();
