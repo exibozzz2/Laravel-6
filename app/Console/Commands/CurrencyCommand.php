@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\CurrencyValuesModel;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use function Pest\Laravel\get;
@@ -34,11 +35,27 @@ class CurrencyCommand extends Command
                        'dkk', 'rub', 'ron',
                        'sek', 'try', 'huf'];
 
+        $this->output->info("Updating currencies...");
+        $this->getOutput()->progressStart(count($currencies));
+
         foreach ($currencies as $currency) {
+
             $response = Http::get("https://kurs.resenje.org/api/v1/currencies/$currency/rates/today");
-            var_dump($response->json()['code'], $response->json()['exchange_middle']);
+            $jsonResponse = $response->json();
+
+            CurrencyValuesModel::create([
+                'value' => $jsonResponse['code'],
+                'cash_buy' => $jsonResponse['exchange_buy'],
+                'exchange_middle' => $jsonResponse['exchange_middle'],
+                'cash_sell' => $jsonResponse['exchange_sell'],
+            ]);
+            $this->getOutput()->progressAdvance(1);
 
         }
+        $this->getOutput()->progressFinish();
+        $this->output->info("Succeeded, all currency values are updated!");
+
+
     }
 
 
