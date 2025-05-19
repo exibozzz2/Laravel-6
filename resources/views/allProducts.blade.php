@@ -13,6 +13,7 @@
             <th scope="col">Description</th>
             <th scope="col">Price</th>
             <th scope="col">Amount</th>
+            <th scope="col">DateInsert</th>
             <th scope="col">Operations</th>
         </tr>
         </thead>
@@ -24,6 +25,8 @@
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->amount }}</td>
+                    <td>{{ $product->date_created }}</td>
+
                     <td>
                         <a href="/admin/delete-product/{{ $product->id }}"  class="btn btn-danger">Delete</a>
                         <a href="{{ route('editProduct', ['product' => $product->id]) }}" class="btn btn-info">Edit</a>

@@ -1,0 +1,53 @@
+| Country                     | Currency                               | Code |
+| --------------------------- | -------------------------------------- | ---- |
+| Albania 🇦🇱                | Albanian Lek                           | ALL  |
+| Andorra 🇦🇩                | o                                   |   |
+| Armenia 🇦🇲                | Armenian Dram                          | AMD  |
+| Austria 🇦🇹                | o                                   |   |
+| Azerbaijan 🇦🇿             | Azerbaijani Manat                      | AZN  |
+| Belarus 🇧🇾                | Belarusian Ruble                       | BYN  |
+| Belgium 🇧🇪                | o                                   |   |
+| Bosnia and Herzegovina 🇧🇦 | Convertible Mark                       | BAM  |
+| Bulgaria 🇧🇬               | Bulgarian Lev                          | BGN  |
+| Croatia 🇭🇷                | o *(since 2023)*                    |   |
+| Cyprus 🇨🇾                 | o                                   |   |
+| Czech Republic 🇨🇿         | Czech Koruna                           | CZK  |
+| Denmark 🇩🇰                | Danish Krone                           | DKK  |
+| Estonia 🇪🇪                | o                                   |   |
+| Finland 🇫🇮                | o                                   |   |
+| France 🇫🇷                 | o                                   |   |
+| Georgia 🇬🇪                | Georgian Lari                          | GEL  |
+| Germany 🇩🇪                | o                                   |   |
+| Greece 🇬🇷                 | o                                   |   |
+| Hungary 🇭🇺                | Hungarian Forint                       | HUF  |
+| Iceland 🇮🇸                | Icelandic Króna                        | ISK  |
+| Ireland 🇮🇪                | o                                   |   |
+| Italy 🇮🇹                  | o                                   |   |
+| Kazakhstan 🇰🇿             | Kazakhstani Tenge *(partly in ope)* | KZT  |
+| Kosovo 🇽🇰                 | o *(unilaterally adopted)*          |   |
+| Latvia 🇱🇻                 | o                                   |   |
+| Liechtenstein 🇱🇮          | Swiss Franc                            | CHF  |
+| Lithuania 🇱🇹              | o                                   |   |
+| Luxembourg 🇱🇺             | o                                   |   |
+| Malta 🇲🇹                  | o                                   |   |
+| Moldova 🇲🇩                | Moldovan Leu                           | MDL  |
+| Monaco 🇲🇨                 | o                                   |   |
+| Montenegro 🇲🇪             | o *(unilaterally adopted)*          |   |
+| Netherlands 🇳🇱            | o                                   |   |
+| North Macedonia 🇲🇰        | Macedonian Denar                       | MKD  |
+| Norway 🇳🇴                 | Norwegian Krone                        | NOK  |
+| Poland 🇵🇱                 | Polish Zloty                           | PLN  |
+| Portugal 🇵🇹               | o                                   |   |
+| Romania 🇷🇴                | Romanian Leu                           | RON  |
+| Russia 🇷🇺                 | Russian Ruble                          | RUB  |
+| San Marino 🇸🇲             | o                                   |   |
+| Serbia 🇷🇸                 | Serbian Dinar                          | RSD  |
+| Slovakia 🇸🇰               | o                                   |   |
+| Slovenia 🇸🇮               | o                                   |   |
+| Spain 🇪🇸                  | o                                   |   |
+| Sweden 🇸🇪                 | Swedish Krona                          | SEK  |
+| Switzerland 🇨🇭            | Swiss Franc                            | CHF  |
+| Turkey 🇹🇷                 | Turkish Lira                           | TRY  |
+| Ukraine 🇺🇦                | Ukrainian Hryvnia                      | UAH  |
+| United Kingdom 🇬🇧         | Pound Sterling                         | GBP  |
+| Vatican City 🇻🇦           | o                                   |   |

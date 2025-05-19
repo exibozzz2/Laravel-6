@@ -1,14 +1,18 @@
 <?php
 
-use App\Http\Controllers\GradesController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+use App\Http\Controllers\GradesController;
+
 
 
 
 
 // VIEW ROUTES WITH FUNCTIONS
 Route::view('/', 'home')->name('home');
-Route::get('/student-info', [GradesController::class, 'getAllStudentsInfo'] );
+Route::get('/student-info', [\App\Http\Controllers\GradesController::class, 'getAllStudentsInfo'] );
 Route::get('/all-contacts', [\App\Http\Controllers\ContactsController::class, 'getAllContacts']);
 Route::get('/all-products', [\App\Http\Controllers\ProductsController::class, 'getAllProducts']);
 
@@ -16,6 +20,8 @@ Route::get('/all-products', [\App\Http\Controllers\ProductsController::class, 'g
 Route::view('/add-student-info', 'addStudentInfo');
 Route::view('/add-product', 'addProduct');
 Route::view('/add-contact', 'addContact ');
+
+Route::view('/testpage', 'testpage');
 
 
 Route::get('/single-product/{product}', [\App\Http\Controllers\ProductsController::class, 'viewSingleProduct'])->name('editProduct');
@@ -36,11 +42,14 @@ Route::post('/admin/add-contact', [\App\Http\Controllers\ContactsController::cla
 
 
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-
-
-
-
-
-
+require __DIR__.'/auth.php';

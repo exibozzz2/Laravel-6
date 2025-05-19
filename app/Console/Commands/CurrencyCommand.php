@@ -59,6 +59,8 @@ class CurrencyCommand extends Command
                 'cash_sell' => $jsonResponse['exchange_sell'],
             ]);
             $this->getOutput()->progressAdvance(1);
+            $this->output->info("$currency is updated!");
+
 
         }
         $this->getOutput()->progressFinish();
