@@ -24,6 +24,10 @@ class ProductRepository
         ]);
     }
 
+    public function singleProduct($id){
+        return $this->productModel->where(['id' => $id])->first();
+    }
+
 
 
 }

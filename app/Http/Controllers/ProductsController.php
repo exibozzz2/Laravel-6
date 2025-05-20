@@ -37,10 +37,18 @@ class ProductsController extends Controller
     }
 
 
-    public function delete(ProductsModel $product) {
+    public function delete($product) {
 
-        $product->delete();
-        return redirect()->back();
+        $singleProduct = $this->connectRepo->singleProduct($product);
+
+        if($singleProduct === null) {
+            die("Product not found");
+        }
+
+        $singleProduct->delete();
+
+        return redirect('/all-products');
+
 
     }
 
