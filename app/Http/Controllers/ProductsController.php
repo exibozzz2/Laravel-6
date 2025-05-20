@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddProductRequest;
 use App\Models\ProductsModel;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
@@ -22,14 +23,7 @@ class ProductsController extends Controller
     }
 
 
-    public function addProduct(Request $request) {
-
-        $request->validate([
-            'name' => 'string|required|min:4',
-            'description' => 'string|required|min:10|max:256',
-            'price' => 'int|required',
-            'amount' => 'int|required',
-        ]);
+    public function addProduct(AddProductRequest $request) {
 
        $this->connectRepo->createProduct($request);
 
@@ -49,7 +43,6 @@ class ProductsController extends Controller
 
         return redirect('/all-products');
 
-
     }
 
     public function viewSingleProduct(ProductsModel $product) {
@@ -58,14 +51,8 @@ class ProductsController extends Controller
 
     }
 
-    public function update(Request $request, ProductsModel $product) {
+    public function update(AddProductRequest $request, ProductsModel $product) {
 
-        $request->validate([
-            'name' => 'string|required|min:4',
-            'description' => 'string|required|min:10|max:256',
-            'price' => 'int|required',
-            'amount' => 'int|required',
-        ]);
 
         $this->connectRepo->editProduct($product, $request);
 
