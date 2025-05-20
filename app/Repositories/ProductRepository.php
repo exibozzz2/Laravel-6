@@ -14,10 +14,16 @@ class ProductRepository
         $this->productModel = new ProductsModel();
     }
 
-    public function test()
+    public function createProduct($request)
     {
-        dd("123");
+        $this->productModel->create([
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+            'price' => $request->get('price'),
+            'amount' => $request->get('amount'),
+        ]);
     }
+
 
 
 }

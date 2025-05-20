@@ -14,7 +14,6 @@ class ProductsController extends Controller
     public function __construct()
     {
         $this->connectRepo = new ProductRepository();
-        $this->connectRepo->test();
     }
 
     public function getAllProducts() {
@@ -32,12 +31,7 @@ class ProductsController extends Controller
             'amount' => 'int|required',
         ]);
 
-        ProductsModel::create([
-            'name' => $request->get('name'),
-            'description' => $request->get('description'),
-            'price' => $request->get('price'),
-            'amount' => $request->get('amount'),
-        ]);
+       $this->connectRepo->createProduct($request);
 
         return redirect('/add-product');
     }
