@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductsModel;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
+
+    private $connectRepo;
+
+    public function __construct()
+    {
+        $this->connectRepo = new ProductRepository();
+        $this->connectRepo->test();
+    }
 
     public function getAllProducts() {
         $allProducts = ProductsModel::all();

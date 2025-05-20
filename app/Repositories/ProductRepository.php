@@ -14,5 +14,11 @@ class ProductRepository
         $this->productModel = new ProductsModel();
     }
 
+    public function test()
+    {
+        dd("123");
+    }
+
+
 }
 ?>
