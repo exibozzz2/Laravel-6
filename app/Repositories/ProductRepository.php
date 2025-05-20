@@ -29,6 +29,13 @@ class ProductRepository
     }
 
 
+    public function editProduct($product, $request){
 
+        $product->name = $request->get('name');
+        $product->description = $request->get('description');
+        $product->price = $request->get('price');
+        $product->amount = $request->get('amount');
+        $product->save();
+    }
 }
 ?>

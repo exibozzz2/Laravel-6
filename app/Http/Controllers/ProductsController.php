@@ -60,11 +60,14 @@ class ProductsController extends Controller
 
     public function update(Request $request, ProductsModel $product) {
 
-        $product->name = $request->get('name');
-        $product->description = $request->get('description');
-        $product->price = $request->get('price');
-        $product->amount = $request->get('amount');
-        $product->save();
+        $request->validate([
+            'name' => 'string|required|min:4',
+            'description' => 'string|required|min:10|max:256',
+            'price' => 'int|required',
+            'amount' => 'int|required',
+        ]);
+
+        $this->connectRepo->editProduct($product, $request);
 
         return redirect('/all-products');
 
