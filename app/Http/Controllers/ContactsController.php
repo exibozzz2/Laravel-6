@@ -4,11 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddContactRequest;
 use App\Models\ContactsModel;
+use App\Repositories\ContactRepository;
 use Illuminate\Http\Request;
 
 class ContactsController extends Controller
 {
+
+
+    private $connectRepository;
+
+    public function __construct()
+    {
+
+        $this->connectRepository = new ContactRepository();
+
+    }
+
+
     public function getAllContacts() {
+
         $allContacts = ContactsModel::all();
         return view('allContacts', compact('allContacts'));
     }
@@ -16,15 +30,7 @@ class ContactsController extends Controller
 
     public function addContact(AddContactRequest $request) {
 
-
-        ContactsModel::create([
-            'name' => $request->get('name'),
-            'subject' => $request->get('subject'),
-            'message' => $request->get('message'),
-            'email' => $request->get('email'),
-            'phone' => $request->get('phone'),
-        ]);
-
+        $this->connectRepository->createContact($request);
         return redirect('/add-contact');
     }
 
@@ -32,7 +38,6 @@ class ContactsController extends Controller
 
         $contact->delete();
         return redirect()->back();
-
     }
 
     public function viewSingleContact(ContactsModel $contact) {
