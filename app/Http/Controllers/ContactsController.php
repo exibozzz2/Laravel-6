@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddContactRequest;
 use App\Models\ContactsModel;
 use Illuminate\Http\Request;
 
@@ -13,16 +14,8 @@ class ContactsController extends Controller
     }
 
 
-    public function addContact(Request $request) {
+    public function addContact(AddContactRequest $request) {
 
-        $request->validate([
-            'name' => 'string|required|min:4',
-            'subject' => 'string|required|min:4|max:256',
-            'message' => 'string|required|min:10|max:2000',
-            'email' => 'string|required|max:256',
-            'phone' => 'regex:/^0?[1-9][0-9]*$/|required',
-
-        ]);
 
         ContactsModel::create([
             'name' => $request->get('name'),
