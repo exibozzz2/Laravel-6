@@ -30,5 +30,15 @@ class ContactRepository
         ]);
     }
 
+    public function updateContact($contact, $request)
+    {
+        $contact->name = $request->get('name');
+        $contact->subject = $request->get('subject');
+        $contact->message = $request->get('message');
+        $contact->email = $request->get('email');
+        $contact->phone = $request->get('phone');
+        $contact->save();
+    }
+
 }
 ?>

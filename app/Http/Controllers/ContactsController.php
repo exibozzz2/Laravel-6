@@ -49,14 +49,7 @@ class ContactsController extends Controller
 
     public function update(UpdateContactRequest $request, ContactsModel $contact) {
 
-
-        $contact->name = $request->get('name');
-        $contact->subject = $request->get('subject');
-        $contact->message = $request->get('message');
-        $contact->email = $request->get('email');
-        $contact->phone = $request->get('phone');
-        $contact->save();
-
+        $this->connectRepository->updateContact($contact, $request);
         return redirect('/all-contacts');
 
     }
