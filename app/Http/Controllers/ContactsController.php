@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddContactRequest;
+use App\Http\Requests\UpdateContactRequest;
 use App\Models\ContactsModel;
 use App\Repositories\ContactRepository;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class ContactsController extends Controller
 
     }
 
-    public function update(Request $request, ContactsModel $contact) {
+    public function update(UpdateContactRequest $request, ContactsModel $contact) {
 
 
         $contact->name = $request->get('name');
