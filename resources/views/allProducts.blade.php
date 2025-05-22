@@ -28,8 +28,8 @@
                     <td>{{ $product->date_created }}</td>
 
                     <td>
-                        <a href="/admin/delete-product/{{ $product->id }}"  class="btn btn-danger">Delete</a>
-                        <a href="{{ route('editProduct', ['product' => $product->id]) }}" class="btn btn-info">Edit</a>
+                        <a href="{{route('delete.product', ['product' => $product->id]) }}"  class="btn btn-danger">Delete</a>
+                        <a href="{{ route('edit.product', ['product' => $product->id]) }}" class="btn btn-info">Edit</a>
                     </td>
                 </tr>
 
