@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddStudentRequest;
 use App\Models\GradesModel;
 use Illuminate\Http\Request;
 
@@ -16,13 +17,7 @@ class GradesController extends Controller
 
     }
 
-    public function addStudentInfo(Request $request) {
-
-        $request->validate([
-            'subject' => 'string|required|min:2',
-            'grade' => 'int|required|min:1|max:5',
-            'professor' => 'string|required'
-        ]);
+    public function addStudentInfo(AddStudentRequest $request) {
 
         GradesModel::create([
             'subject' => $request->get('subject'),
@@ -30,7 +25,7 @@ class GradesController extends Controller
             'professor' => $request->get('professor')
         ]);
 
-        return redirect('/add-student-info');
+        return redirect()->route('all.students.info');
     }
 
 }
