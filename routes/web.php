@@ -9,42 +9,48 @@ use Inertia\Inertia;
 use App\Http\Controllers\GradesController;
 
 
-// ONLY VIEW
 
-Route::view('/', 'home')->name('home');
-Route::view('/add-student-info', 'addStudentInfo')->name('add.student');
-Route::view('/add-product', 'addProduct')->name('add.product');
-Route::view('/add-contact', 'addContact ')->name('add.contact');
-Route::view('/testpage', 'testpage')->name('test.page');
+Route::middleware('auth', \App\Http\Middleware\AdminMiddleware::class)->prefix("admin")->group(function(){
+
+    // ONLY VIEW
+    Route::view('/', 'home')->name('home');
+    Route::view('/add-student-info', 'addStudentInfo')->name('add.student');
+    Route::view('/add-product', 'addProduct')->name('add.product');
+    Route::view('/add-contact', 'addContact ')->name('add.contact');
+    Route::view('/testpage', 'testpage')->name('test.page');
 
 
 // Grades Group
-Route::controller(GradesController::class)->group(function(){
-    Route::get('/student-info', 'getAllStudentsInfo')->name("all.students.info");
-    Route::post('/admin/add-student-info','addStudentInfo')->name('add.student.post');
-});
+    Route::controller(GradesController::class)->prefix("student")->group(function(){
+        Route::get('/info', 'getAllStudentsInfo')->name("all.students.info");
+        Route::post('/post/create','addStudentInfo')->name('add.student.post');
+    });
 
 // Contacts Group
-Route::controller(ContactsController::class)->group(function(){
-    Route::get('/all-contacts', 'getAllContacts')->name('all.contacts');
-    Route::get('/single-contact/{contact}', 'viewSingleContact')->name('edit.contact');
-    Route::get('/admin/delete-contact/{contact}', 'delete')->name('delete.contact');
-    Route::post('/admin/update-contact/{contact}', 'update')->name('update.contact');
-    Route::post('/admin/add-contact', 'addContact')->name('add.contact.post');
-});
+    Route::controller(ContactsController::class)->prefix("contacts")->group(function(){
+        Route::get('/all', 'getAllContacts')->name('all.contacts');
+        Route::get('/{contact}', 'viewSingleContact')->name('edit.contact');
+        Route::get('/delete/{contact}', 'delete')->name('delete.contact');
+        Route::post('update/{contact}', 'update')->name('update.contact');
+        Route::post('/create', 'addContact')->name('add.contact.post');
+    });
 
 // Products Group
-Route::controller(ProductsController::class)->group(function(){
-    Route::get('/all-products', 'getAllProducts')->name('all.products');
-    Route::get('/single-product/{product}', 'viewSingleProduct')->name('edit.product');
-    Route::get('/admin/delete-product/{product}', 'delete')->name('delete.product');
-    Route::post('/admin/update-product/{product}', 'update')->name('edit.product.post');
-    Route::post('/admin/add-product', 'addProduct')->name('add.product.post');
+    Route::controller(ProductsController::class)->prefix("products")->group(function(){
+        Route::get('/all', 'getAllProducts')->name('all.products');
+        Route::get('/{product}', 'viewSingleProduct')->name('edit.product');
+        Route::get('/delete/{product}', 'delete')->name('delete.product');
+        Route::post('/update/{product}', 'update')->name('edit.product.post');
+        Route::post('/create', 'addProduct')->name('add.product.post');
+    });
+
+
+
 });
 
 
-
-
+Route::get('login', [AuthenticatedSessionController::class, 'create'])
+    ->name('login');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
