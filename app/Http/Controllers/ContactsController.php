@@ -32,7 +32,7 @@ class ContactsController extends Controller
     public function addContact(AddContactRequest $request) {
 
         $this->connectRepository->createContact($request);
-        return redirect('/add-contact');
+        return redirect()->route('all.contacts');
     }
 
     public function delete(ContactsModel $contact) {
@@ -50,7 +50,7 @@ class ContactsController extends Controller
     public function update(UpdateContactRequest $request, ContactsModel $contact) {
 
         $this->connectRepository->updateContact($contact, $request);
-        return redirect('/all-contacts');
+        return redirect()->route('all.contacts');
 
     }
 }
