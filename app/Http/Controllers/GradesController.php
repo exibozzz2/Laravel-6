@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddStudentRequest;
 use App\Models\GradesModel;
+use App\Repositories\GradesRepository;
 use Illuminate\Http\Request;
 
 class GradesController extends Controller
 {
+
+    private $connectRepository;
+
+    public function __construct()
+    {
+        $this->connectRepository = new GradesRepository();
+    }
 
 
     public function getAllStudentsInfo() {
@@ -19,11 +27,7 @@ class GradesController extends Controller
 
     public function addStudentInfo(AddStudentRequest $request) {
 
-        GradesModel::create([
-            'subject' => $request->get('subject'),
-            'grade' => $request->get('grade'),
-            'professor' => $request->get('professor')
-        ]);
+        $this->connectRepository->createStudentGrade($request);
 
         return redirect()->route('all.students.info');
     }
