@@ -21,27 +21,27 @@ Route::middleware('auth', \App\Http\Middleware\AdminMiddleware::class)->prefix("
 
 
 // Grades Group
-    Route::controller(GradesController::class)->prefix("student")->group(function(){
-        Route::get('/info', 'getAllStudentsInfo')->name("all.students.info");
-        Route::post('/post/create','addStudentInfo')->name('add.student.post');
+    Route::controller(GradesController::class)->prefix("student")->name("student.")->group(function(){
+        Route::get('/info', 'getAllStudentsInfo')->name('all');
+        Route::post('/post/create','addStudentInfo')->name('add.post');
     });
 
 // Contacts Group
-    Route::controller(ContactsController::class)->prefix("contacts")->group(function(){
-        Route::get('/all', 'getAllContacts')->name('all.contacts');
-        Route::get('/{contact}', 'viewSingleContact')->name('edit.contact');
-        Route::get('/delete/{contact}', 'delete')->name('delete.contact');
-        Route::post('update/{contact}', 'update')->name('update.contact');
-        Route::post('/create', 'addContact')->name('add.contact.post');
+    Route::controller(ContactsController::class)->prefix("contacts")->name("contact.")->group(function(){
+        Route::get('/all', 'getAllContacts')->name('all');
+        Route::get('/{contact}', 'viewSingleContact')->name('edit');
+        Route::get('/delete/{contact}', 'delete')->name('delete');
+        Route::post('update/{contact}', 'update')->name('update');
+        Route::post('/create', 'addContact')->name('post.add');
     });
 
 // Products Group
-    Route::controller(ProductsController::class)->prefix("products")->group(function(){
-        Route::get('/all', 'getAllProducts')->name('all.products');
-        Route::get('/{product}', 'viewSingleProduct')->name('edit.product');
-        Route::get('/delete/{product}', 'delete')->name('delete.product');
-        Route::post('/update/{product}', 'update')->name('edit.product.post');
-        Route::post('/create', 'addProduct')->name('add.product.post');
+    Route::controller(ProductsController::class)->prefix("products")->name("product.")->group(function(){
+        Route::get('/all', 'getAllProducts')->name('all');
+        Route::get('/{product}', 'viewSingleProduct')->name('edit');
+        Route::get('/delete/{product}', 'delete')->name('delete');
+        Route::post('/update/{product}', 'update')->name('update');
+        Route::post('/create', 'addProduct')->name('post.add');
     });
 
 

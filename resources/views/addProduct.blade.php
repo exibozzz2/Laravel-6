@@ -6,7 +6,7 @@
 
 @section("content")
     <div class="container d-flex justify-content-center align-items-center">
-        <form class="mb-3 mt-3 col-12 d-flex justify-content-center align-items-center flex-column bg-custom border-radius rounded" method="POST" action="{{route('add.product.post')}}">
+        <form class="mb-3 mt-3 col-12 d-flex justify-content-center align-items-center flex-column bg-custom border-radius rounded" method="POST" action="{{route('product.post.add')}}">
 
             {{ csrf_field() }}
             @if($errors->any())

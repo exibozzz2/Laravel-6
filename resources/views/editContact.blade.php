@@ -6,7 +6,7 @@
 
 @section("content")
     <div class="container d-flex justify-content-center align-items-center">
-        <form class="mb-3 mt-3 col-12 d-flex justify-content-center align-items-center flex-column bg-custom border-radius rounded" method="POST" action="{{ route('update.contact', ['contact' => $contact->id ]) }}">
+        <form class="mb-3 mt-3 col-12 d-flex justify-content-center align-items-center flex-column bg-custom border-radius rounded" method="POST" action="{{ route('contact.update', ['contact' => $contact->id ]) }}">
 
             {{ csrf_field() }}
             @if($errors->any())

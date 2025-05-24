@@ -27,7 +27,7 @@ class ProductsController extends Controller
 
        $this->connectRepo->createProduct($request);
 
-        return redirect()->route('all.products');
+        return redirect()->route('product.all');
     }
 
 
@@ -41,7 +41,7 @@ class ProductsController extends Controller
 
         $singleProduct->delete();
 
-        return redirect()->route('all.products');
+        return redirect()->route('product.all');
 
     }
 
@@ -56,7 +56,7 @@ class ProductsController extends Controller
 
         $this->connectRepo->editProduct($product, $request);
 
-        return redirect()->route('all.products');
+        return redirect()->route('product.all');
 
     }
 

@@ -29,7 +29,7 @@ class GradesController extends Controller
 
         $this->connectRepository->createStudentGrade($request);
 
-        return redirect()->route('all.students.info');
+        return redirect()->route('student.all');
     }
 
 }
