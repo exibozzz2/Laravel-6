@@ -5,12 +5,14 @@
 @endsection
 
 @section("content")
+
+
     <table class="table">
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col-3">Name</th>
-            <th scope="col-2">Description</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
             <th scope="col">Price</th>
             <th scope="col">Amount</th>
             <th scope="col">Order product</th>
@@ -29,12 +31,12 @@
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->amount }}</td>
                     <td>
-                        <form method="POST" action="{{route('order.create')}}">
+                        <form method="POST" action="{{route('orders.create')}}">
+                            {{ csrf_field() }}
                             <input class="col-7" type="number" name="productAmount" placeholder="Enter the order quantity:" required>
                             <input type="hidden" name="productId" value="{{$product->id}}">
                             <input type="hidden" name="productName" value="{{$product->name}}">
                             <button class="btn btn-success ">Order</button>
-
                         </form>
                     </td>
 

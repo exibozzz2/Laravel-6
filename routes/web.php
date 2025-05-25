@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -44,11 +46,11 @@ Route::middleware('auth', \App\Http\Middleware\AdminMiddleware::class)->prefix("
         Route::post('/create', 'addProduct')->name('post.add');
     });
 
-    Route::controller(\App\Http\Controllers\OrdersController::class)->prefix("orders")->name('order.')->group(function(){
+    Route::controller(OrdersController::class)->prefix("orders")->name('orders.')->group(function(){
+       Route::get('/all', 'getAllOrders')->name('all');
        Route::post('/create', 'createOrder')->name('create');
+
     });
-
-
 
 
 
