@@ -9,23 +9,34 @@
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
+            <th scope="col-3">Name</th>
+            <th scope="col-2">Description</th>
             <th scope="col">Price</th>
             <th scope="col">Amount</th>
-            <th scope="col">DateInsert</th>
+            <th scope="col">Order product</th>
             <th scope="col">Operations</th>
         </tr>
         </thead>
         <tbody>
+
             @foreach($allProducts as $product)
+
+
                 <tr>
                     <td>{{ $product->id }}</td>
-                    <td>{{ $product->name }}</td>
-                    <td>{{ $product->description }}</td>
+                    <td class="col-2">{{ $product->name }}</td>
+                    <td class="col-3">{{ $product->description }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->amount }}</td>
-                    <td>{{ $product->date_created }}</td>
+                    <td>
+                        <form method="POST" action="{{route('order.create')}}">
+                            <input class="col-7" type="number" name="productAmount" placeholder="Enter the order quantity:" required>
+                            <input type="hidden" name="productId" value="{{$product->id}}">
+                            <input type="hidden" name="productName" value="{{$product->name}}">
+                            <button class="btn btn-success ">Order</button>
+
+                        </form>
+                    </td>
 
                     <td>
                         <a href="{{route('product.delete', ['product' => $product->id]) }}"  class="btn btn-danger">Delete</a>
