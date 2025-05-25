@@ -44,6 +44,12 @@ Route::middleware('auth', \App\Http\Middleware\AdminMiddleware::class)->prefix("
         Route::post('/create', 'addProduct')->name('post.add');
     });
 
+    Route::controller(\App\Http\Controllers\OrdersController::class)->prefix("orders")->name('order.')->group(function(){
+       Route::post('/create', 'createOrder')->name('create');
+    });
+
+
+
 
 
 });
