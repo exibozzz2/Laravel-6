@@ -10,6 +10,8 @@ class OrdersController extends Controller
 
     public function getAllOrders()
     {
+
+        dd(Session::get('order'));
         return view('orders', [
             'orders' => Session::get('order')
         ]);
@@ -17,10 +19,10 @@ class OrdersController extends Controller
     }
     public function createOrder(Request $request)
     {
-
         Session::push('order', [
-            'productId' => $request->get('productId'),
             'productName' => $request->get('productName'),
+            'productId' => $request->get('productId'),
+            'productPrice' => $request->get('productPrice'),
             'productAmount' => $request->get('productAmount'),
         ]);
         return redirect()->route('orders.all');
