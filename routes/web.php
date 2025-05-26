@@ -46,13 +46,11 @@ Route::middleware('auth', \App\Http\Middleware\AdminMiddleware::class)->prefix("
         Route::post('/create', 'addProduct')->name('post.add');
     });
 
+// Orders Group
     Route::controller(OrdersController::class)->prefix("orders")->name('orders.')->group(function(){
        Route::get('/all', 'getAllOrders')->name('all');
        Route::post('/create', 'createOrder')->name('create');
-
     });
-
-
 
 });
 

@@ -22,8 +22,6 @@
         <tbody>
 
             @foreach($allProducts as $product)
-
-
                 <tr>
                     <td>{{ $product->id }}</td>
                     <td class="col-2">{{ $product->name }}</td>
@@ -47,8 +45,8 @@
                         <a href="{{ route('product.edit', ['product' => $product->id]) }}" class="btn btn-info">Edit</a>
                     </td>
                 </tr>
-
             @endforeach
+
         </tbody>
     </table>
 @endsection

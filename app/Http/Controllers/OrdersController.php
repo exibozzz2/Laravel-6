@@ -10,13 +10,13 @@ class OrdersController extends Controller
 
     public function getAllOrders()
     {
-
-        dd(Session::get('order'));
         return view('orders', [
             'orders' => Session::get('order')
         ]);
 
     }
+
+
     public function createOrder(Request $request)
     {
         Session::push('order', [
