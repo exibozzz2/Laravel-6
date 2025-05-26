@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrdersRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -17,7 +18,7 @@ class OrdersController extends Controller
     }
 
 
-    public function createOrder(Request $request)
+    public function createOrder(OrdersRequest $request)
     {
         Session::push('order', [
             'productName' => $request->get('productName'),
