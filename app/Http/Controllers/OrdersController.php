@@ -11,6 +11,15 @@ class OrdersController extends Controller
 
     public function getAllOrders()
     {
+
+        $allOrders = [];
+
+        foreach(Session::get('order') as $singleOrder)
+        {
+            $allOrders[] = $singleOrder['productId'];
+        }
+
+
         return view('orders', [
             'orders' => Session::get('order')
         ]);
