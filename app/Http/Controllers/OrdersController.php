@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrdersRequest;
+use App\Models\ProductsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -12,16 +13,20 @@ class OrdersController extends Controller
     public function getAllOrders()
     {
 
-        $allOrders = [];
+        $allOrdersIds = [];
 
         foreach(Session::get('order') as $singleOrder)
         {
-            $allOrders[] = $singleOrder['productId'];
+            $allOrdersIds[] = $singleOrder['productId'];
         }
+
+        $allOrders = ProductsModel::whereIn("id", $allOrdersIds)->get();
 
 
         return view('orders', [
-            'orders' => Session::get('order')
+            'ordersFromSession' => Session::get('order'),
+            'allOrders' => $allOrders,
+
         ]);
 
     }
