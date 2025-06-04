@@ -34,6 +34,17 @@ class OrdersController extends Controller
 
     public function createOrder(OrdersRequest $request)
     {
+
+        $orderedProduct = ProductsModel::where(['id' => $request->productId])->first();
+
+        if($orderedProduct->amount < $request->productAmount){
+            die("We're sorry, but the quantity you've requested exceeds
+            our current stock availability. Please adjust the order
+            quantity or contact our customer support for assistance.
+            We strive to maintain accurate inventory levels and apologize
+            for any inconvenience caused.");
+        }
+
         Session::push('order', [
             'productName' => $request->get('productName'),
             'productId' => $request->get('productId'),
