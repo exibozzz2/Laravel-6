@@ -13,12 +13,7 @@ class OrdersController extends Controller
     public function getAllOrders()
     {
 
-        $allOrdersIds = [];
-
-        foreach(Session::get('order') as $singleOrder)
-        {
-            $allOrdersIds[] = $singleOrder['productId'];
-        }
+        $allOrdersIds = array_column(Session::get('order'), 'productId');
 
         $allOrders = ProductsModel::whereIn("id", $allOrdersIds)->get();
 
