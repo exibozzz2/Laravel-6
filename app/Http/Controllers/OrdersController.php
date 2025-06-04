@@ -13,15 +13,28 @@ class OrdersController extends Controller
     public function getAllOrders()
     {
 
-        $allOrdersIds = array_column(Session::get('order'), 'productId');
+        $allOrders = [];
 
-        $allOrders = ProductsModel::whereIn("id", $allOrdersIds)->get();
+        foreach (Session::get('order') as $singleOrder)
+        {
+            $orderedProduct = ProductsModel::firstWhere(['id' => $singleOrder['productId']]);
+
+            if($orderedProduct)
+            {
+                $allOrders[] = [
+                    'productName' => $orderedProduct->name,
+                    'productId' => $orderedProduct->id,
+                    'productPrice' => $orderedProduct->price,
+                    'productStock' => $orderedProduct->amount,
+                    'productAmount' => $singleOrder['productAmount'],
+                    'productTotal' => $orderedProduct->price*$singleOrder['productAmount'],
+                ];
+            }
+        }
 
 
         return view('orders', [
-            'ordersFromSession' => Session::get('order'),
             'allOrders' => $allOrders,
-
         ]);
 
     }
