@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+use App\Http\Requests\AddStudentRequest;
 use App\Models\ContactsModel;
 use App\Models\GradesModel;
 
@@ -16,7 +17,7 @@ class GradesRepository
     }
 
 
-    public function createStudentGrade($request)
+    public function createStudentGrade(AddStudentRequest $request)
     {
         $this->gradesModel->create([
             'subject' => $request->get('subject'),

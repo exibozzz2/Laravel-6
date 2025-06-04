@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Repositories;
-use App\Models\ContactsModel;
+use App\Http\Requests\AddContactRequest;
+use App\Http\Requests\UpdateContactRequest;use App\Models\ContactsModel;
 
 
 class ContactRepository
@@ -19,7 +20,7 @@ class ContactRepository
         dd("123");
     }
 
-    public function createContact($request)
+    public function createContact(AddContactRequest $request)
     {
         $this->contactModel->create([
             'name' => $request->get('name'),
@@ -30,7 +31,7 @@ class ContactRepository
         ]);
     }
 
-    public function updateContact($contact, $request)
+    public function updateContact(UpdateContactRequest $contact, $request)
     {
         $contact->name = $request->get('name');
         $contact->subject = $request->get('subject');

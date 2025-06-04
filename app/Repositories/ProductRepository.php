@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\AddProductRequest;
 use App\Models\ProductsModel;
 
 class ProductRepository
@@ -14,7 +15,7 @@ class ProductRepository
         $this->productModel = new ProductsModel();
     }
 
-    public function createProduct($request)
+    public function createProduct(AddProductRequest $request)
     {
         $this->productModel->create([
             'name' => $request->get('name'),
@@ -29,7 +30,7 @@ class ProductRepository
     }
 
 
-    public function editProduct($product, $request){
+    public function editProduct(AddProductRequest $product, $request){
 
         $product->name = $request->get('name');
         $product->description = $request->get('description');
