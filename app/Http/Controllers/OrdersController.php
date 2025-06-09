@@ -13,9 +13,16 @@ class OrdersController extends Controller
     public function getAllOrders()
     {
 
+        $ordersFromSession = Session::get('order');
+
+        if(count($ordersFromSession) < 1 )
+        {
+            return redirect()->route('product.all');
+        }
+
         $allOrders = [];
 
-        foreach (Session::get('order') as $singleOrder)
+        foreach ($ordersFromSession as $singleOrder)
         {
             $orderedProduct = ProductsModel::firstWhere(['id' => $singleOrder['productId']]);
 
@@ -31,7 +38,6 @@ class OrdersController extends Controller
                 ];
             }
         }
-
 
         return view('orders', [
             'allOrders' => $allOrders,
