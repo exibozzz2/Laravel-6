@@ -52,11 +52,13 @@ class OrdersController extends Controller
         $orderedProduct = ProductsModel::where(['id' => $request->productId])->first();
 
         if($orderedProduct->amount < $request->productAmount){
-            die("We're sorry, but the quantity you've requested exceeds
-            our current stock availability. Please adjust the order
-            quantity or contact our customer support for assistance.
-            We strive to maintain accurate inventory levels and apologize
-            for any inconvenience caused.");
+
+            return redirect()->back()
+                ->with('error', 'We are sorry, but the quantity you have requested exceeds
+                                   our current stock availability. Please adjust the order
+                                   quantity or contact our customer support for assistance.
+                                   We strive to maintain accurate inventory levels and apologize
+                                   for any inconvenience caused.');
         }
 
         Session::push('order', [
