@@ -46,6 +46,15 @@ class OrdersController extends Controller
     }
 
 
+    public function finishOrder()
+    {
+
+        dd("x");
+
+    }
+
+
+
     public function createOrder(OrdersRequest $request)
     {
 

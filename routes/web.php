@@ -50,6 +50,7 @@ Route::middleware('auth', \App\Http\Middleware\AdminMiddleware::class)->prefix("
     Route::controller(OrdersController::class)->prefix("orders")->name('orders.')->group(function(){
        Route::get('/all', 'getAllOrders')->name('all');
        Route::post('/create', 'createOrder')->name('create');
+       Route::get('/finish', 'finishOrder')->name('finish');
     });
 
 });
