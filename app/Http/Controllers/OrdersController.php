@@ -49,8 +49,13 @@ class OrdersController extends Controller
     public function finishOrder()
     {
 
-        dd("x");
+        $ordersFromSession = Session::get('order');
 
+        foreach($ordersFromSession as $singleOrder)
+        {
+            $orderedProduct = ProductsModel::firstWhere('id', $singleOrder['productId']);
+            dd($orderedProduct);
+        }
     }
 
 
