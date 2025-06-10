@@ -9,6 +9,12 @@
 
     <h1 class="text-center">All Orders</h1>
 
+    @if (session('error'))
+        <div class="alert alert-danger bg-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     @foreach($allOrders as $order)
 
 
@@ -20,6 +26,7 @@
             <p><b>In Stock</b>: {{$order['productStock']}}</p>
             <p><b>Ordered</b>: {{$order['productAmount']}}pcs</p>
             <p><b>Total Price</b>: {{$order['productTotal']}}</p>
+            <a class="btn btn-primary" href="{{route('orders.finish')}}">Finish Order</a>
         </div>
         </div>
     @endforeach
