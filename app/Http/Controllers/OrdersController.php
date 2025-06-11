@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OrdersRequest;
 use App\Models\AllOrdersModel;
+use App\Models\OrderDataModel;
 use App\Models\ProductsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,8 +22,6 @@ class OrdersController extends Controller
         {
             return redirect()->route('product.all');
         }
-
-
 
         $allOrders = [];
 
@@ -58,9 +57,8 @@ class OrdersController extends Controller
 
         foreach($ordersFromSession as $singleOrder)
         {
-
-
             $orderedProduct = ProductsModel::firstWhere('id', $singleOrder['productId']);
+
             $totalOrderPrice += $singleOrder['productAmount'] * $orderedProduct->price;
             if($orderedProduct->amount < $singleOrder['productAmount'])
             {
@@ -72,20 +70,29 @@ class OrdersController extends Controller
                                    for any inconvenience caused.');
             }
 
-            AllOrdersModel::create([
-                'user_id' => Auth::id(),
-                'price' => $totalOrderPrice,
+        }
+
+        $order = AllOrdersModel::create([
+            'user_id' => Auth::id(),
+            'price' => $totalOrderPrice,
+        ]);
+
+        foreach($ordersFromSession as $singleOrder)
+        {
+            $orderedProduct = ProductsModel::firstWhere('id', $singleOrder['productId']);
+            OrderDataModel::create([
+                'order_id' => $order->id,
+                'product_id' => $orderedProduct->id,
+                'amount' => $singleOrder['productAmount'],
+                'price' => $singleOrder['productAmount'] * $orderedProduct->price,
             ]);
 
         }
     }
 
 
-
-
     public function createOrder(OrdersRequest $request)
     {
-
         $orderedProduct = ProductsModel::where(['id' => $request->productId])->first();
 
         if($orderedProduct->amount < $request->productAmount){
@@ -105,7 +112,5 @@ class OrdersController extends Controller
             'productAmount' => $request->get('productAmount'),
         ]);
         return redirect()->route('orders.all');
-
-
     }
 }
