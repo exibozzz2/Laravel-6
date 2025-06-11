@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrdersRequest;
+use App\Models\AllOrdersModel;
 use App\Models\ProductsModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class OrdersController extends Controller
@@ -15,10 +17,12 @@ class OrdersController extends Controller
 
         $ordersFromSession = Session::get('order');
 
-        if(count($ordersFromSession) < 1 )
+        if(!Session::has('order'))
         {
             return redirect()->route('product.all');
         }
+
+
 
         $allOrders = [];
 
@@ -50,10 +54,14 @@ class OrdersController extends Controller
     {
 
         $ordersFromSession = Session::get('order');
+        $totalOrderPrice = 0;
 
         foreach($ordersFromSession as $singleOrder)
         {
+
+
             $orderedProduct = ProductsModel::firstWhere('id', $singleOrder['productId']);
+            $totalOrderPrice += $singleOrder['productAmount'] * $orderedProduct->price;
             if($orderedProduct->amount < $singleOrder['productAmount'])
             {
                 return redirect()->back()
@@ -64,8 +72,14 @@ class OrdersController extends Controller
                                    for any inconvenience caused.');
             }
 
+            AllOrdersModel::create([
+                'user_id' => Auth::id(),
+                'price' => $totalOrderPrice,
+            ]);
+
         }
     }
+
 
 
 
@@ -91,5 +105,7 @@ class OrdersController extends Controller
             'productAmount' => $request->get('productAmount'),
         ]);
         return redirect()->route('orders.all');
+
+
     }
 }
