@@ -80,14 +80,19 @@ class OrdersController extends Controller
         foreach($ordersFromSession as $singleOrder)
         {
             $orderedProduct = ProductsModel::firstWhere('id', $singleOrder['productId']);
+            $orderedProduct->amount -= $singleOrder['productAmount'];
+            $orderedProduct->save();
+
+
             OrderDataModel::create([
                 'order_id' => $order->id,
                 'product_id' => $orderedProduct->id,
                 'amount' => $singleOrder['productAmount'],
                 'price' => $singleOrder['productAmount'] * $orderedProduct->price,
             ]);
-
         }
+
+        Session::remove('order');
     }
 
 
