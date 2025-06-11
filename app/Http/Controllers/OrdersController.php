@@ -93,6 +93,8 @@ class OrdersController extends Controller
         }
 
         Session::remove('order');
+
+        return view('successfully');
     }
 
 
