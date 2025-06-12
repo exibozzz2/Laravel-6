@@ -55,6 +55,11 @@ class OrdersController extends Controller
         $ordersFromSession = Session::get('order');
         $totalOrderPrice = 0;
 
+        if(!Session::has('order'))
+        {
+            return redirect()->route('product.all');
+        }
+
         foreach($ordersFromSession as $singleOrder)
         {
             $orderedProduct = ProductsModel::firstWhere('id', $singleOrder['productId']);
@@ -79,6 +84,8 @@ class OrdersController extends Controller
 
         foreach($ordersFromSession as $singleOrder)
         {
+
+
             $orderedProduct = ProductsModel::firstWhere('id', $singleOrder['productId']);
             $orderedProduct->amount -= $singleOrder['productAmount'];
             $orderedProduct->save();

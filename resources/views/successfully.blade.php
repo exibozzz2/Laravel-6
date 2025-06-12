@@ -18,7 +18,7 @@
             An order confirmation has been sent to your email. <br>
             If you have any questions, we’re just a click away.
         </p>
-        <a href="/" class="btn btn-home px-4 py-2">Back to Home</a>
+        <a href="{{route('product.all')}}" class="btn btn-home px-4 py-2">Back to Products</a>
     </div>
 
 @endsection
